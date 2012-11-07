@@ -1,0 +1,42 @@
+{
+    "name": "translator", 
+    "license": "MPL 2.0", 
+    "author": "Byron Adams", 
+    "version": "2.0", 
+    "fullName": "translator", 
+    "id": "translator@dontfollowme.net", 
+    "description": "a basic add-on",
+
+    "preferences" : [
+        {
+            "name" : "new_tab",
+            "title": "Translate In New Tab",
+            "description" : "Open translated webpage in new tab",
+            "type" : "bool",
+            "value" : true 
+        },
+
+        {
+            "name" : "one_click",
+            "title" : "One-click Translation",
+            "description" : "Enable One-click translation to my favorite language",
+            "type": "bool",
+            "value" : false
+        },
+
+        {
+            "name" : "text_popup",
+            "title" : "Enable Text-translation Panel",
+            "description" : "Open text translations in a new panel",
+            "type" : "bool",
+            "value" : true
+        },
+
+        {
+            "name" : "FavoriteLanguages",
+            "title" : "Favorite Languages",
+            "label" : "Edit Languages",
+            "type" : "control"
+        }
+    ]
+}

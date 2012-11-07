@@ -1,0 +1,95 @@
+body {
+    font-size: 12px;
+    overflow: hidden;
+    font-family: 'sans-serif';
+}
+
+h1 {
+    font-size: 16px;
+    line-height: 32px;
+    margin-left: 36px;
+}
+
+#translate_page, #translate_text {
+    background: url('images/icons/translator-32.png') top left no-repeat;
+}
+
+#translate_page label {
+    display: block;
+    width: 40px;
+    float:left
+}
+
+#translate_page select {float: left;width:140px;}
+#translate_page .actions {text-align: right;}
+
+#languages_panel .top {width: 380px;clear:both;}
+#languages_panel .controls {margin:0 5px;width:50px;float:left;text-align:center;padding-top:70px;}
+#favorites, #available {width: 150px;float:left;}
+#languages_panel .actions {clear:both;text-align:right;width:380px;}
+
+#text {resize: none;width: 380px;height: 150px; }
+.controls {padding: 7px 10px;}
+.actions {height: 32px; clear:both;text-align: right;}
+.actions button{margin-top: 10px; }
+.spinner {
+    width: 16px;
+    height: 16px;
+    float:left;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 3px;
+    margin-left: 5px;
+    maegin-top: 10px;
+}
+.spinner.active {background: url(images/spinner.gif);}
+
+select {width: 150px;}
+
+option.flag {
+    padding-left: 25px;
+    background-position: 3px center;
+    background-repeat: no-repeat;
+}
+
+option.flag.favorite {font-weight:bold;}
+
+.flag.ar {background-image: url(images/flags/sd.png);}
+.flag.bg {background-image: url(images/flags/bg.png);}
+.flag.ca {background-image: url(images/flags/catalonia.png);}
+.flag.zh-CHS, .flag.zh-CHT {background-image: url(images/flags/cn.png);}
+.flag.cs {background-image: url(images/flags/cz.png);}
+.flag.da {background-image: url(images/flags/dk.png);}
+.flag.nl {background-image: url(images/flags/nl.png);}
+.flag.en {background-image: url(images/flags/gb.png);}
+.flag.et {background-image: url(images/flags/ee.png);}
+.flag.fa {background-image: url(images/flags/ir.png);}
+.flag.fi {background-image: url(images/flags/fi.png);}
+.flag.fr {background-image: url(images/flags/fr.png);}
+.flag.de {background-image: url(images/flags/de.png);}
+.flag.el {background-image: url(images/flags/gr.png);}
+.flag.ht {background-image: url(images/flags/ht.png);}
+.flag.he {background-image: url(images/flags/il.png);}
+.flag.hi {background-image: url(images/flags/in.png);}
+.flag.hu {background-image: url(images/flags/hu.png);}
+.flag.id {background-image: url(images/flags/id.png);}
+.flag.it {background-image: url(images/flags/it.png);}
+.flag.ja {background-image: url(images/flags/jp.png);}
+.flag.ko {background-image: url(images/flags/kr.png);}
+.flag.lv {background-image: url(images/flags/lv.png);}
+.flag.lt {background-image: url(images/flags/lt.png);}
+.flag.mww{background-image: url(images/flags/th.png);}
+.flag.no {background-image: url(images/flags/no.png);}
+.flag.pl {background-image: url(images/flags/pl.png);}
+.flag.pt {background-image: url(images/flags/pt.png);}
+.flag.ro {background-image: url(images/flags/ro.png);}
+.flag.ru {background-image: url(images/flags/ru.png);}
+.flag.sk {background-image: url(images/flags/sk.png);}
+.flag.sl {background-image: url(images/flags/sl.png);}
+.flag.es {background-image: url(images/flags/es.png);}
+.flag.sv {background-image: url(images/flags/sv.png);}
+.flag.th {background-image: url(images/flags/th.png);}
+.flag.tr {background-image: url(images/flags/tr.png);}
+.flag.uk {background-image: url(images/flags/ua.png);}
+.flag.vi {background-image: url(images/flags/vi.png);}
+
