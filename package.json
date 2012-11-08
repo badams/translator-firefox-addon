@@ -25,14 +25,6 @@
         },
 
         {
-            "name" : "text_popup",
-            "title" : "Enable Text-translation Panel",
-            "description" : "Open text translations in a new panel",
-            "type" : "bool",
-            "value" : true
-        },
-
-        {
             "name" : "FavoriteLanguages",
             "title" : "Favorite Languages",
             "label" : "Edit Languages",

@@ -1,7 +1,7 @@
 body {
     font-size: 12px;
     overflow: hidden;
-    font-family: 'sans-serif';
+    font: x-small verdana,arial,helvetica,sans-serif;
 }
 
 h1 {
