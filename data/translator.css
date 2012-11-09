@@ -20,6 +20,20 @@ h1 {
     float:left
 }
 
+#auto_trans {
+    line-height: 25px;
+}
+
+#translate_page label[for=auto] {
+    width: 140px;
+    float: left;
+}
+
+#translate_page #auto {
+    width: auto;
+    float: left;
+}
+
 #translate_page select {float: left;width:140px;}
 #translate_page .actions {text-align: right;}
 
