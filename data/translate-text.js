@@ -13,14 +13,13 @@ self.port.on('init', function (options) {
     $('#from_lang').append('<option class="flat" value="">'+locales['Auto_Detect']+'</option>');
 
     var textbox = $('#text');
-    var translate_button = $('#translate_button');
+    var translate_button = document.getElementById('translate_button');
     var original_text = options.text;
 
     textbox.val(options.text);
-
     $('select').append(options.languages);
 
-    translate_button.click(function () {
+    translate_button.onclick = function () {
         $('.spinner').addClass('active');
         $(this).attr('disabled', true);
         self.port.emit('translate', {
@@ -28,9 +27,9 @@ self.port.on('init', function (options) {
             to : $('#to_lang').val(),
             text : textbox.val()
         });
-    });
+    };
 
-    $('#cancel')[0].onclick = function () {
+    document.getElementById('cancel').onclick = function () {
         self.port.emit('close');
     };
 
