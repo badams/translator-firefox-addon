@@ -5,6 +5,7 @@ body {
 }
 
 h1 {
+    font: message-box;
     font-size: 16px;
     line-height: 32px;
     margin-left: 36px;
@@ -46,17 +47,6 @@ h1 {
 .controls {padding: 7px 10px;}
 .actions {height: 32px; clear:both;text-align: right;}
 .actions button{margin-top: 10px; }
-.spinner {
-    width: 16px;
-    height: 16px;
-    float:left;
-    border: 1px solid #ddd;
-    background: #fff;
-    border-radius: 3px;
-    margin-left: 5px;
-    maegin-top: 10px;
-}
-.spinner.active {background: url(images/spinner.gif);}
 
 select {width: 150px;}
 
@@ -65,6 +55,26 @@ option.flag {
     background-position: 3px center;
     background-repeat: no-repeat;
 }
+
+i.flag {
+    display: inline-block;
+    vertical-align: text-top;
+    line-height: 11px;
+    width: 16px;
+    height: 11px;   
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+i.icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;   
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+i.icon-add {background-image: url(images/add.png);}
 
 option.flag.favorite {font-weight:bold;}
 
@@ -107,3 +117,132 @@ option.flag.favorite {font-weight:bold;}
 .flag.uk {background-image: url(images/flags/ua.png);}
 .flag.vi {background-image: url(images/flags/vi.png);}
 
+ul.tabs {
+    list-style: none;
+    display: block;
+    height: 20px;
+    overflow: hidden;
+    padding: 5px;
+    margin: 0;
+    padding-bottom: 5px;
+    border: 1px solid;
+    border-radius: 4px 4px 0 0;
+    border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) #fff rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
+}
+ul.tabs > li {
+    display: block;
+    float: left;
+    border-style: solid;
+    border-radius: 4px 4px 0 0;
+    border-width: 1px 1px 0 1px;
+    padding: 3px 5px;
+    font: x-small;
+    cursor: pointer;
+    margin: 0 5px 0 0;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    line-height: 20px;
+    vertical-align: middle;
+    opacity: 0.6;
+    transition: opacity 0.2s ease-in-out 0.1s;
+}
+
+
+ul.tabs li[data-lang="origin"] i.flag, ul.tabs li.add-tab i.flag {
+    margin-right: 7px;
+}
+
+ul.tabs > li.active {
+    background: #fff;
+    opacity: 1;
+}
+
+ul.tabs > li:hover, ul.tabs > li.add-tab {
+    opacity: 1;
+}
+
+ul.tabs > li.add-tab {
+    margin-right: 0px;
+}
+
+
+div.lang-select {
+    height: 200px;
+    width: 150px;
+    display: none;
+    position: absolute;
+    overflow-y: scroll;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-width: 0 1px 1px 1px;
+    border-radius: 0 0 0 4px;
+    margin-left: -130px;
+    margin-top: -3;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+div.lang-select div[data-lang] {
+    padding: 5px;
+    cursor: pointer;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    line-height: 20px;
+    font-size: x-small;
+}
+
+div.lang-select div[data-lang]:hover {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(to bottom, #0088CC, #0044CC);
+}
+
+div.tab-content {
+    clear: both;
+    background : #fff;
+}
+
+div.tab-content > div {
+    display: none;
+}
+
+div.tab-content > div.active {
+    display: block;
+}
+
+div.tab-content textarea {
+    border: 1px solid;
+    border-width: 0 1px;
+    border-color: rgba(0, 0, 0, 0.15);
+    resize: none;
+    margin: 0;
+    width: 100%;
+    height: 150px;
+    padding: 5px;
+}
+
+div.tab-content div.tab-toolbar {
+    font: x-small;
+    border: 1px solid #252525;
+    background-image: linear-gradient(to bottom, #222222, #111111);
+    color: #999;
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+}
+
+div.tab-toolbar div.lang-info {
+    float:left;
+}
+
+.spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    float:right;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 3px;
+    margin: 5px;
+}
+.working .spinner {display: block;background: url(images/spinner.gif);}
