@@ -43,8 +43,7 @@ var TabbedTranslator = function (el, options) {
     this.lang = this.l10n['Unknown'];
     this.tab_count = 0;
 
-    this.container.append('<ul class="tabs"></ul>');
-    this.container.append('<div class="tab-content"></div>');
+    this.container.html(this.template('main'));
 
     this.tabs = this.container.find('ul.tabs');
     this.tab_content = this.container.find('div.tab-content');
@@ -62,13 +61,22 @@ var TabbedTranslator = function (el, options) {
         $(this).attr('data-edited', new Date().getTime());
     });
 
+    this.container.find('#close').click(function () {
+        self.port.emit('close');
+    });
+
     return this;
 }; 
 
 
 TabbedTranslator.prototype = {
-    /* {{{ Templates */
+    /* {{{ Templates (HTML Generators) */
     tpl : {
+        main : function () {
+            var content = '<ul class="tabs"></ul><div class="tab-content"></div>';
+            content += '<div class="actions"><button class="btn" id="close">'+this.l10n['Close']+'</button></div>';
+            return content;
+        },
 
         tab : function (lang) {
             var content = '<li data-lang="'+lang+'"><i class="flag '+lang+'"></i>';
