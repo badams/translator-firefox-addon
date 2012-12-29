@@ -62,6 +62,7 @@ i.flag {
     line-height: 11px;
     width: 16px;
     height: 11px;   
+    background-color: #888;
     background-repeat: no-repeat;
     background-position: center center;
 }
@@ -72,9 +73,12 @@ i.icon {
     height: 16px;   
     background-repeat: no-repeat;
     background-position: center center;
+    background-color: transparent;
 }
 
 i.icon-add {background-image: url(images/add.png);}
+i.icon-remove {background-image: url(images/delete.png);}
+i.icon-error {background-image: url(images/error.png);}
 
 option.flag.favorite {font-weight:bold;}
 
@@ -122,11 +126,11 @@ ul.tabs {
     display: block;
     height: 20px;
     overflow: hidden;
-    padding: 5px;
+    padding: 5px 7px;
     margin: 0;
-    padding-bottom: 5px;
     border: 1px solid;
     border-radius: 4px 4px 0 0;
+    border-width: 1px 1px 0 1px;
     border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) #fff rgba(0, 0, 0, 0.25);
     background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
 }
@@ -154,19 +158,30 @@ ul.tabs li[data-lang="origin"] i.flag, ul.tabs li.add-tab i.flag {
     margin-right: 7px;
 }
 
+ul.tabs li > i.icon-error {
+    margin-top: -3px;
+}
+
 ul.tabs > li.active {
     background: #fff;
     opacity: 1;
 }
 
-ul.tabs > li:hover, ul.tabs > li.add-tab {
+ul.tabs > li:hover, ul.tabs > li.add-tab, ul.tabs > li.remove-tab {
     opacity: 1;
 }
 
-ul.tabs > li.add-tab {
-    margin-right: 0px;
+ul.tabs > li.remove-tab {
+    float: right;
+    background: #fff;
+}
+ul.tabs > li.remove-tab.disabled {
+    opacity: 0.6;
 }
 
+ul.tabs > li.remove-tab {
+    margin-right: 0px;
+}
 
 div.lang-select {
     height: 200px;
@@ -221,11 +236,21 @@ div.tab-content textarea {
     padding: 5px;
 }
 
+div.tab-content div.working textarea {
+    opacity: 0.6;
+    background: #ddd url('images/big-spinner.gif') no-repeat center center;
+    color : #888;
+}
+
+div.tab-content div.error textarea {
+    background: #FFF8C9;
+}
+
 div.tab-content div.tab-toolbar {
     font: x-small;
     border: 1px solid #252525;
-    background-image: linear-gradient(to bottom, #222222, #111111);
-    color: #999;
+    border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
     height: 30px;
     padding: 0 10px;
     line-height: 30px;
@@ -235,14 +260,3 @@ div.tab-toolbar div.lang-info {
     float:left;
 }
 
-.spinner {
-    display: none;
-    width: 16px;
-    height: 16px;
-    float:right;
-    border: 1px solid #ddd;
-    background: #fff;
-    border-radius: 3px;
-    margin: 5px;
-}
-.working .spinner {display: block;background: url(images/spinner.gif);}
