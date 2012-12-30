@@ -56,6 +56,7 @@ option.flag {
 }
 
 .btn {
+    cursor: pointer;
     color: #333;
     display: block;
     padding: 5px 7px;
@@ -140,10 +141,10 @@ option.flag.favorite {font-weight:bold;}
 .flag.vi {background-image: url(images/flags/vi.png);}
 
 ul.tabs {
+    position:relative;
     list-style: none;
     display: block;
     height: 20px;
-    overflow: hidden;
     padding: 5px 7px;
     margin: 0;
     border: 1px solid;
@@ -155,10 +156,11 @@ ul.tabs {
 ul.tabs > li {
     display: block;
     float: left;
+    max-height: 20px;
     border-style: solid;
     border-radius: 4px 4px 0 0;
     border-width: 1px 1px 0 1px;
-    padding: 3px 5px;
+    padding: 3px 5px 2px;
     font: x-small;
     cursor: pointer;
     margin: 0 5px 0 0;
@@ -189,12 +191,18 @@ ul.tabs > li:hover, ul.tabs > li.add-tab, ul.tabs > li.remove-tab {
     opacity: 1;
 }
 
+ul.tabs > li.add-tab, ul.tabs > li.remove-tab {
+    padding: 5px 5px 0;
+}
+
 ul.tabs > li.remove-tab {
     float: right;
     background: #fff;
+    position: absolute;
+    right: 2px;
 }
-ul.tabs > li.remove-tab.disabled {
-    opacity: 0.6;
+ul.tabs > li.remove-tab.disabled i {
+    opacity: 0.2;
 }
 
 ul.tabs > li.remove-tab {
@@ -202,6 +210,7 @@ ul.tabs > li.remove-tab {
 }
 
 div.lang-select {
+    z-index: 9999;
     height: 200px;
     width: 150px;
     display: none;
