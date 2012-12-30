@@ -42,6 +42,7 @@ var TabbedTranslator = function (el, options) {
     this.l10n = options.l10n;
     this.lang = this.l10n['Unknown'];
     this.tab_count = 0;
+    this.max_tabs = 4;
 
     this.container.html(this.template('main'));
 
@@ -165,7 +166,7 @@ TabbedTranslator.prototype = {
         if (this.tabs.find('li[data-lang='+lang+']').get(0))
             return this.showTab(lang);
 
-        if (this.lang !== this.languages[lang]) {
+        if (this.lang !== this.languages[lang] && this.tab_count <= this.max_tabs) {
             if (this.tabs.find('.add-tab')[0])
                 this.tabs.find('.add-tab').before(this.template('tab', lang));
             else
@@ -175,12 +176,13 @@ TabbedTranslator.prototype = {
             
             this.tab_count++;
 
-            if (this.tab_count  > 7) {
+            if (this.tab_count  > this.max_tabs) {
                 this.tabs.find('li.add-tab').hide();
             }
 
             this.favs[lang] = this.languages[lang];
         }
+
         return this;
     },
     /* }}} */
@@ -196,7 +198,7 @@ TabbedTranslator.prototype = {
         this.tab_count--;
         this.saveFavorites();
         
-        if (this.tab_count <= 7) this.tabs.find('li.add-tab').show();
+        if (this.tab_count <= this.max_tabs) this.tabs.find('li.add-tab').show();
         
         delete this.favs[lang];
 
