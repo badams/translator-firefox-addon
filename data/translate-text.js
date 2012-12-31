@@ -33,6 +33,17 @@ self.port.on('detect-complete', function (data) {
     }
 });
 
+self.port.on('speak-complete', function (data) {
+    if (data && data.lang && data.audio ) {
+       //console.log(data.audio);
+       translator.speak(data.lang, data.audio);
+       //translator.tab_content.find('div[data-lang="'+data.lang+'"] div.toolbar').append('<audio src="'+data.audio+'" controls>');
+    } else {
+       // translator.errorTab('origin');
+    }
+});
+/* {{{ TabbTranslator */
+/* {{{ constructor */
 var TabbedTranslator = function (el, options) {
 
     this.container = el;
@@ -66,10 +77,12 @@ var TabbedTranslator = function (el, options) {
         self.port.emit('close');
     });
 
+    this.container.click($.proxy(this.click, this));
+
     return this;
 }; 
-
-
+/* }}} */
+/* {{{ API */
 TabbedTranslator.prototype = {
     /* {{{ Templates (HTML Generators) */
     tpl : {
@@ -104,7 +117,10 @@ TabbedTranslator.prototype = {
                 content += this.l10n['From'] + ': <span class="from">'+this.lang+'</span> '
                 content += this.l10n['To'] + ': <span class="to">'+this.languages[lang]+'</span>';
             } 
-            content += '</div></div></div>';
+            content += '</div>';
+            content += '<button class="btn speak"><i class="icon icon-sound"></i></button>';
+            content += '<audio>';
+            content += '</div></div>';
 
             return content;
         },
@@ -117,6 +133,7 @@ TabbedTranslator.prototype = {
             html += '</div>';
             return html;
         },
+
     },
     /* }}} */
     /* {{{ Utils */
@@ -131,6 +148,14 @@ TabbedTranslator.prototype = {
             from : '',
             text : text
         });
+    },
+
+    speak : function (lang, data) {
+        var toolbar = this.tab_content.find('div[data-lang="'+lang+'"] div.tab-toolbar');
+        toolbar.find('audio').attr('src', data).get(0).addEventListener('ended', function () {
+            toolbar.find('button.stop').attr('class', 'btn play').find('i').attr('class', 'icon icon-play');
+        });
+        toolbar.find('button.speak').attr('class', 'btn play').find('i').attr('class', 'icon icon-play');
     },
 
     getOriginLanguage : function () {
@@ -249,6 +274,35 @@ TabbedTranslator.prototype = {
     /* }}} */
     /* }}} */
     /* {{{ Events */
+    click : function (e) {
+        var $t = $(e.target);
+        $t = $t.is('i') ?  $t.parent() : $t;
+
+        if ($t.is('button.speak')) {
+            var container = $t.parents('div[data-lang]'),
+                data = {
+                    lang : container.attr('data-lang'), 
+                    text : container.find('textarea').val()
+                };
+
+            self.port.emit('speak', data);
+            
+            $t.find('i.icon').removeClass('icon-sound').addClass('icon-spinner');
+        } 
+
+
+        if ($t.is('button.play')) {
+            $t.attr('class', 'btn stop').find('i').attr('class', 'icon icon-stop');
+            $t.parent().find('audio')[0].play();
+            return false;
+        }
+
+        if ($t.is('button.stop')) {
+            $t.attr('class', 'btn play').find('i').attr('class', 'icon icon-play');
+            $t.parent().find('audio')[0].pause();
+            return false;
+        }
+    },
     clickTab : function (e) {
         var $t = $(e.target);
         $t = $t.is('i') ?  $t.parent() : $t;
@@ -286,4 +340,5 @@ TabbedTranslator.prototype = {
     },
     /* }}} */
 };
-
+/* }}} */
+/* }}} */

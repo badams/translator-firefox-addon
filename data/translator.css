@@ -100,6 +100,10 @@ i.icon {
 i.icon-add {background-image: url(images/add.png);}
 i.icon-remove {background-image: url(images/delete.png);}
 i.icon-error {background-image: url(images/error.png);}
+i.icon-sound {background-image: url(images/sound.png);}
+i.icon-play {background-image: url(images/play.png);}
+i.icon-stop {background-image: url(images/stop.png);}
+i.icon-spinner {background-image: url(images/small-spinner.gif);}
 
 option.flag.favorite {font-weight:bold;}
 
@@ -282,11 +286,18 @@ div.tab-content div.tab-toolbar {
     border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
     background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
     height: 30px;
-    padding: 0 10px;
+    padding: 0 0 0 10px;
     line-height: 30px;
 }
 
 div.tab-toolbar div.lang-info {
     float:left;
+}
+
+div.tab-toolbar button.btn {
+    float:right;
+    border-width: 0 0 0 1px;
+    border-radius: 0;
+    height: 30px;
 }
 
