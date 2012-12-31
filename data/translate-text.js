@@ -10,6 +10,7 @@ self.port.on('init', function (options) {
     translator = new TabbedTranslator($('#translator'), {
         text : options.text,
         languages : options.languages,
+        speak_languages : options.speakLanguages,
         tabs : options.favorites,
         l10n : options.locales
     });
@@ -35,9 +36,7 @@ self.port.on('detect-complete', function (data) {
 
 self.port.on('speak-complete', function (data) {
     if (data && data.lang && data.audio ) {
-       //console.log(data.audio);
        translator.speak(data.lang, data.audio);
-       //translator.tab_content.find('div[data-lang="'+data.lang+'"] div.toolbar').append('<audio src="'+data.audio+'" controls>');
     } else {
        // translator.errorTab('origin');
     }
@@ -49,6 +48,7 @@ var TabbedTranslator = function (el, options) {
     this.container = el;
     this.original_text = options.text;
     this.languages = options.languages;
+    this.speak_languages = options.speak_languages;
     this.favs = options.tabs;
     this.l10n = options.l10n;
     this.lang = this.l10n['Unknown'];
@@ -118,7 +118,9 @@ TabbedTranslator.prototype = {
                 content += this.l10n['To'] + ': <span class="to">'+this.languages[lang]+'</span>';
             } 
             content += '</div>';
-            content += '<button class="btn speak"><i class="icon icon-sound"></i></button>';
+            if (-1 < this.speak_languages.indexOf(lang)) {
+                content += '<button class="btn speak"><i class="icon icon-sound"></i></button>';
+            }
             content += '<audio>';
             content += '</div></div>';
 
