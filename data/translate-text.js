@@ -2,11 +2,6 @@ var translator;
 
 self.port.on('init', function (options) {
 
-    if (translator) {
-        translator.container.get(0).innerHTML = '';
-        delete translator;
-    } 
-
     translator = new TabbedTranslator($('#translator'), {
         text : options.text,
         languages : options.languages,
@@ -16,7 +11,6 @@ self.port.on('init', function (options) {
     });
 
 });
-
 
 self.port.on('translation-complete', function (data) {
     if (data && data.result) {
@@ -77,7 +71,7 @@ var TabbedTranslator = function (el, options) {
         self.port.emit('close');
     });
 
-    this.container.click($.proxy(this.click, this));
+    this.container.get(0).onclick = $.proxy(this.click, this);
 
     return this;
 }; 
@@ -119,9 +113,9 @@ TabbedTranslator.prototype = {
             } 
             content += '</div>';
             if (-1 < this.speak_languages.indexOf(lang)) {
-                content += '<button class="btn speak"><i class="icon icon-sound"></i></button>';
+                content += '<button class="btn speak player"><i class="icon icon-sound"></i></button>';
+                content += '<audio>';
             }
-            content += '<audio>';
             content += '</div></div>';
 
             return content;
@@ -153,11 +147,16 @@ TabbedTranslator.prototype = {
     },
 
     speak : function (lang, data) {
-        var toolbar = this.tab_content.find('div[data-lang="'+lang+'"] div.tab-toolbar');
-        toolbar.find('audio').attr('src', data).get(0).addEventListener('ended', function () {
-            toolbar.find('button.stop').attr('class', 'btn play').find('i').attr('class', 'icon icon-play');
+        var toolbar = this.tab_content.find('div[data-lang="'+lang+'"] div.tab-toolbar'),
+            audio = toolbar.find('audio').attr('src', data).get(0);
+
+        audio.play();
+
+        audio.addEventListener('ended', function () {
+            toolbar.find('button.stop').attr('class', 'btn play player').find('i').attr('class', 'icon icon-play');
         });
-        toolbar.find('button.speak').attr('class', 'btn play').find('i').attr('class', 'icon icon-play');
+
+        toolbar.find('button.player').attr('class', 'btn stop player').find('i').attr('class', 'icon icon-stop');
     },
 
     getOriginLanguage : function () {
@@ -288,8 +287,9 @@ TabbedTranslator.prototype = {
                 };
 
             self.port.emit('speak', data);
-            
-            $t.find('i.icon').removeClass('icon-sound').addClass('icon-spinner');
+            $t.removeClass('speak').find('i.icon').removeClass('icon-sound').addClass('icon-spinner');
+
+            return false;
         } 
 
 
