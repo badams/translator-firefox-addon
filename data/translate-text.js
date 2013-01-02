@@ -35,6 +35,16 @@ self.port.on('speak-complete', function (data) {
        // translator.errorTab('origin');
     }
 });
+
+/**
+ * When the panel gets closed, make sure to stop any audio thats playing.
+ */
+self.port.on('hide', function () {
+    $('audio').each(function () {
+        this.pause();
+    });
+});
+
 /* {{{ TabbTranslator */
 /* {{{ constructor */
 var TabbedTranslator = function (el, options) {
@@ -45,7 +55,8 @@ var TabbedTranslator = function (el, options) {
     this.speak_languages = options.speak_languages;
     this.favs = options.tabs;
     this.l10n = options.l10n;
-    this.lang = this.l10n['Unknown'];
+    this.lang = '';
+    this.lang_name = this.l10n['Unknown'];
     this.tab_count = 0;
     this.max_tabs = 4;
 
@@ -106,9 +117,9 @@ TabbedTranslator.prototype = {
             var content = '<div data-lang="'+lang+'"><textarea maxlength="2000"></textarea>';
             content += '<div class="tab-toolbar"><div class="lang-info">'
             if ('origin' == lang) {
-                content += '<span class="from">'+this.lang+'</span>';
+                content += '<span class="from">'+this.lang_name+'</span>';
             } else {
-                content += this.l10n['From'] + ': <span class="from">'+this.lang+'</span> '
+                content += this.l10n['From'] + ': <span class="from">'+this.lang_name+'</span> '
                 content += this.l10n['To'] + ': <span class="to">'+this.languages[lang]+'</span>';
             } 
             content += '</div>';
@@ -141,15 +152,19 @@ TabbedTranslator.prototype = {
         this.tab_content.find('div[data-lang="'+lang+'"] textarea').attr('disabled', true).parent().addClass('working');
         self.port.emit('translate', {
             to : lang,
-            from : '',
+            from : this.lang,
             text : text
         });
     },
 
     speak : function (lang, data) {
+
+        lang = (this.lang  === lang) ? 'origin' : lang; 
+
         var toolbar = this.tab_content.find('div[data-lang="'+lang+'"] div.tab-toolbar'),
             audio = toolbar.find('audio').attr('src', data).get(0);
 
+        //audio.playbackRate = 1;
         audio.play();
 
         audio.addEventListener('ended', function () {
@@ -165,15 +180,21 @@ TabbedTranslator.prototype = {
     },
 
     setOriginLanguage : function (lang) {
-        this.lang = this.languages[lang];
+        this.lang = lang;
+        this.lang_name = this.languages[lang];
         this.tabs.find('li[data-lang="origin"] i').addClass(lang);
         this.tab_content.find('div[data-lang="origin"]').removeClass('working');
         this.tabs.append(this.template('addTab'));
         this.tabs.append(this.template('removeTab'));
         this.langSelect = this.tabs.find('div.lang-select');
-        this.tab_content.find('div.lang-info span.from').html(this.languages[lang]);
+        this.tab_content.find('div.lang-info span.from').html(this.lang_name);
 
         for (var t in this.favs) this.addTab(t);
+        
+        if (-1 < this.speak_languages.indexOf(lang)) {
+            this.tab_content.find('div[data-lang="origin"] div.tab-toolbar')
+                .append('<button class="btn speak player"><i class="icon icon-sound"></i></button><audio>');
+        }
     }, 
 
     getText : function () {
@@ -192,7 +213,7 @@ TabbedTranslator.prototype = {
         if (this.tabs.find('li[data-lang='+lang+']').get(0))
             return this.showTab(lang);
 
-        if (this.lang !== this.languages[lang] && this.tab_count <= this.max_tabs) {
+        if (this.lang !== lang && this.tab_count <= this.max_tabs) {
             if (this.tabs.find('.add-tab')[0])
                 this.tabs.find('.add-tab').before(this.template('tab', lang));
             else
@@ -281,8 +302,9 @@ TabbedTranslator.prototype = {
 
         if ($t.is('button.speak')) {
             var container = $t.parents('div[data-lang]'),
+                lang = container.attr('data-lang')
                 data = {
-                    lang : container.attr('data-lang'), 
+                    lang : 'origin' === lang ? this.lang : lang, 
                     text : container.find('textarea').val()
                 };
 
@@ -335,7 +357,7 @@ TabbedTranslator.prototype = {
             var lang = $t.attr('data-lang');
             this.langSelect.hide();
 
-            if (this.lang !== this.languages[lang]) 
+            if (this.lang !== lang) 
                 this.addTab(lang).showTab(lang);
                 this.saveFavorites();
         }
