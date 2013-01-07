@@ -1,0 +1,6 @@
+#gb, #gt-bbar-c {display: none;}
+
+#gt-c #gt-appbar {
+    background : none;
+    background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
+}
