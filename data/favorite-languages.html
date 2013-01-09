@@ -5,7 +5,23 @@
 
     <body>
     <div id="languages_panel">
-        <div class="top">
+        <h1 data-l10n-id="Manage_Languages">Manage Favorites</h1>
+
+        <div id="LangManager" class="language-manager">
+            <div class="language-toolbar">
+                <button class="btn add"><i class="icon icon-add"></i> Add Favorite</button>
+                <div class="lang-select"></div>
+            </div>
+            <div class="favorite-languages">
+            </div>
+
+            <div class="actions"> 
+                <button id="close" class="btn" data-l10n-id="Cancel">Cancel</button>
+                <button id="save" class="btn" data-l10n-id="Save">Save</button>
+            </div>
+
+        </div>
+        <!--<div class="top">
             <div id="favorites">
                 <label for="favorites_select" data-l10n-id="Favorite_Languages">Favorite Languages</label>
                 <select id="favorites_select" size="10"></select>
@@ -21,11 +37,7 @@
                 <select id="available_select" size="10"></select>
             </div>
         </div>
-
-        <div class="actions"> 
-            <button id="close" data-l10n-id="Cancel">Cancel</button>
-            <button id="save" data-l10n-id="Save">Save</button>
-        </div>
+        -->
 
     </div>
     </body>

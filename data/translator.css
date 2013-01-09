@@ -3,6 +3,7 @@ body {
     overflow: hidden;
     font: x-small verdana,arial,helvetica,sans-serif;
     -moz-user-select: -moz-none;
+    cursor: default;
 }
 
 h1 {
@@ -13,7 +14,7 @@ h1 {
     cursor: default;
 }
 
-#translate_page, #translate_text {
+#translate_page, #translate_text, #languages_panel {
     background: url('images/icons/translator-32.png') top left no-repeat;
 }
 
@@ -38,17 +39,10 @@ h1 {
 }
 
 #translate_page select {float: left;width:140px;}
-#translate_page .actions {text-align: right;}
 
-#languages_panel .top {width: 380px;clear:both;}
-#languages_panel .controls {margin:0 5px;width:50px;float:left;text-align:center;padding-top:70px;}
-#favorites, #available {width: 150px;float:left;}
-#languages_panel .actions {clear:both;text-align:right;width:380px;}
 
 #text {resize: none;width: 380px;height: 150px; }
-.controls {padding: 7px 10px;}
-.actions {height: 32px; clear:both;text-align: right;margin-top:10px;}
-.actions .btn {float:right;}
+.actions {height: 32px; clear:both;text-align: right;margin-top:10px; float:right;}
 select {width: 150px;}
 
 option.flag {
@@ -60,7 +54,7 @@ option.flag {
 .btn {
     cursor: pointer;
     color: #333;
-    display: block;
+    display: inline-block;
     padding: 5px 7px;
     margin: 0;
     border: 1px solid;
@@ -77,6 +71,11 @@ option.flag {
 .btn:active {
     background-image: linear-gradient(to bottom, #F2F2F2, #FFFFFF);
 }
+
+.btn i.icon {
+    vertical-align: text-top;
+}
+
 i.flag {
     display: inline-block;
     vertical-align: text-top;
@@ -103,9 +102,13 @@ i.icon-error {background-image: url(images/error.png);}
 i.icon-sound {background-image: url(images/sound.png);}
 i.icon-play {background-image: url(images/play.png);}
 i.icon-stop {background-image: url(images/stop.png);}
+i.icon-up {background-image: url(images/arrow_up.png);}
+i.icon-down {background-image: url(images/arrow_down.png);}
+
 i.icon-spinner {background-image: url(images/small-spinner.gif);}
 
 option.flag.favorite {font-weight:bold;}
+
 
 .flag.ar {background-image: url(images/flags/sd.png);}
 .flag.bg {background-image: url(images/flags/bg.png);}
@@ -301,3 +304,93 @@ div.tab-toolbar button.btn {
     height: 30px;
 }
 
+/* {{{ Favorites Manager */
+
+.language-manager {
+    width: 360px;
+}
+
+.language-toolbar {
+    height: 30px;
+    width: 100%;
+    float:left;
+    padding: 0;
+    position: relative;
+}
+    
+.language-toolbar .lang-select {
+    top: 30px;
+    left: 0px;
+    height: 150px;
+    margin: 0
+}
+
+.language-toolbar .lang-select i.flag {
+    margin-right: 5px;
+}
+.language-toolbar button.add {
+    float:left;
+    border-radius: 4px 4px 0 0;
+    border-width: 1px 1px 0 1px;
+}
+
+.favorite-languages {
+    float: left;
+    width: 100%;
+    height: 150px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.25);
+    border-radius: 0 4px 4px 4px;
+    overflow-y: scroll;
+    background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
+}
+
+.language-item {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #f2f2f2;
+    opacity: 0.8;
+    overflow: hidden;
+    transition: opacity 0.2s ease-in-out 0.1s;
+    background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
+}
+
+.language-item:hover {
+    background-image: linear-gradient(to bottom, #fefcea 0%,#f7f2ca 100%);
+    opacity: 1;
+}
+
+.language-item .item-title {
+    background-position: 16px center;
+    background-repeat: no-repeat;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 40px;
+    padding: 0 0 0 42px;
+}
+
+.language-item .controls {
+    float:right;
+    opacity: 0.2;
+}
+
+.language-item .icon-sound {
+    line-height: 40px;
+    display: inline-block;
+    margin: 0 10px 0 0;
+}
+
+.language-item button {
+    height: 40px;
+    border-radius: 0px;
+    border-width: 0 0 0 1px;
+    display: inline-block;
+    background: none;
+}
+
+.language-item:hover .controls {
+    opacity: 1;
+}
+
+/* }}} */
