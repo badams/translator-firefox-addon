@@ -304,6 +304,10 @@ div.tab-toolbar button.btn {
     height: 30px;
 }
 
+div.working button.btn {
+    opacity: 0.5;
+}
+
 /* {{{ Favorites Manager */
 
 .language-manager {

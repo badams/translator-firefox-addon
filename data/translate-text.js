@@ -308,8 +308,10 @@ TabbedTranslator.prototype = {
                     text : container.find('textarea').val()
                 };
 
-            self.port.emit('speak', data);
-            $t.removeClass('speak').find('i.icon').removeClass('icon-sound').addClass('icon-spinner');
+            if (!container.is('.working')) {
+                self.port.emit('speak', data);
+                $t.removeClass('speak').find('i.icon').removeClass('icon-sound').addClass('icon-spinner');
+            }
 
             return false;
         } 
