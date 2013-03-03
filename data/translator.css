@@ -100,13 +100,15 @@ i.icon-add {background-image: url(images/add.png);}
 i.icon-remove {background-image: url(images/delete.png);}
 i.icon-error {background-image: url(images/error.png);}
 i.icon-sound {background-image: url(images/sound.png);}
-i.icon-play {background-image: url(images/play.png);}
-i.icon-stop {background-image: url(images/stop.png);}
+i.icon-play {background-image: url(images/control_play.png);}
+i.icon-stop {background-image: url(images/control_pause.png);}
 i.icon-up {background-image: url(images/arrow_up.png);}
 i.icon-down {background-image: url(images/arrow_down.png);}
 
 i.icon-spinner {background-image: url(images/small-spinner.gif);}
 
+.btn:hover i.icon-play {background-image: url(images/control_play_blue.png);}
+.btn:hover i.icon-stop {background-image: url(images/control_pause_blue.png);}
 option.flag.favorite {font-weight:bold;}
 
 
