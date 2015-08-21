@@ -1,19 +1,18 @@
 {
-    "name": "translator", 
-    "license": "MPL 2.0", 
-    "author": "Byron Adams", 
-    "version": "2.0.3", 
-    "fullName": "translator", 
-    "id": "translator@dontfollowme.net", 
+    "name": "translator",
+    "license": "MPL 2.0",
+    "author": "Byron Adams",
+    "version": "2.0.3",
+    "fullName": "translator",
+    "id": "translator@dontfollowme.net",
     "description": "Translate webpages and text at the click of a button.",
-
     "preferences" : [
         {
             "name" : "new_tab",
             "title": "Translate In New Tab",
             "description" : "Open translated webpage in new tab",
             "type" : "bool",
-            "value" : true 
+            "value" : true
         },
 
         {
