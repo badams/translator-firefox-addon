@@ -49,7 +49,7 @@ var button = ActionButton({
       contentURL : self.data.url('translate-page.html'),
       contentScriptFile : [
           self.data.url('translate-page.js'),
-          self.data.url('jquery-1.8.2.min.js')
+          self.data.url('jquery-2.1.4.min.js')
       ]
   });
 
@@ -113,7 +113,7 @@ var button = ActionButton({
       width: 400,
       height: 320,
       contentURL : self.data.url('translate-text.html'),
-      contentScriptFile : [self.data.url('jquery-1.8.2.min.js'), self.data.url('translate-text.js')],
+      contentScriptFile : [self.data.url('jquery-2.1.4.min.js'), self.data.url('translate-text.js')],
   });
 
   textTranslatePanel.on('hide', function () {
