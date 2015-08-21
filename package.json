@@ -2,7 +2,7 @@
     "name": "translator",
     "license": "MPL 2.0",
     "author": "Byron Adams",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "fullName": "translator",
     "id": "translator@dontfollowme.net",
     "description": "Translate webpages and text at the click of a button.",
